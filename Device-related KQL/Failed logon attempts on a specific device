@@ -1,0 +1,7 @@
+failed logon attempts on a specific device 
+
+// Retrieve failed logon attempts on specific devices in the last 12 days
+DeviceLogonEvents
+| where Timestamp > ago(12d)  // Filter for the last 12 days of data
+| where ActionType has "LogonFailed"  // Filter for failed logon attempts
+| where DeviceName has "Device name"  // Filter for any device name (can specify a specific device name if needed, e.g., DeviceName == "Device1")
