@@ -1,3 +1,8 @@
+This query helps monitor successful logon attempts to devices within an organization over the last 24 hours. 
+It identifies devices with the highest number of logon attempts, grouped by account, timestamp, and remote IP. 
+This can be used to detect potential brute-force attacks, unusual logon activity, or compliance violations. 
+By analyzing the frequency and origin of logins, security teams can quickly identify suspicious behavior, investigate potential threats, and ensure that access policies are being followed.
+
 // Start by accessing the DeviceLogonEvents table, which contains logon-related events.
 DeviceLogonEvents
 // Filter the events to only include those that occurred in the last 24 hours.
