@@ -6,9 +6,9 @@ By analyzing the frequency and origin of logins, security teams can quickly iden
 // Start by accessing the DeviceLogonEvents table, which contains logon-related events.
 DeviceLogonEvents
 // Filter the events to only include those that occurred in the last 24 hours.
-| where Timestamp > ago(1d)
+| where Timestamp > ago(1d) // Change as per requirement
 // Further filter the data to only include successful logon events.
-| where ActionType == "LogonSuccess"
+| where ActionType == "LogonSuccess" 
 // Summarize the data by DeviceName, AccountName, Timestamp, and RemoteIP.
 // For each combination of these fields, count how many logon attempts occurred.
 | summarize LogonAttempts = count() by DeviceName, AccountName, Timestamp, RemoteIP
