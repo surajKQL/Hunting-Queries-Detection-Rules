@@ -1,1 +1,15 @@
+// Start by accessing the DeviceLogonEvents table, which contains logon-related events.
+DeviceLogonEvents
+// Filter the events to only include those that occurred in the last 24 hours.
+| where Timestamp > ago(1d)
+// Further filter the data to only include successful logon events.
+| where ActionType == "LogonSuccess"
+// Summarize the data by DeviceName, AccountName, Timestamp, and RemoteIP.
+// For each combination of these fields, count how many logon attempts occurred.
+| summarize LogonAttempts = count() by DeviceName, AccountName, Timestamp, RemoteIP
+// Sort the summarized data in descending order based on LogonAttempts, 
+// and select the top 10 devices/accounts with the highest number of logon attempts.
+| top 10 by LogonAttempts desc
+// Project only the relevant columns (DeviceName, AccountName, Timestamp, RemoteIP) to be displayed in the output.
+| project DeviceName, AccountName, Timestamp, RemoteIP
 
